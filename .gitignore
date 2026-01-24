@@ -1,0 +1,20 @@
+
+.venv/
+venv/
+env/
+build/
+dist/
+
+# Кэш Python (байт-код)
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.xd
+
+*.spec
+*.env
+
+# Avoid your project being littered with annoying .DS_Store files!
+.DS_Store
+.prettierignore
