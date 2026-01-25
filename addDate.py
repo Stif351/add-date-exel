@@ -198,7 +198,6 @@ lf12.grid_propagate(False)
 
 label_month = tk.Label(lf12, text="Виберіть місяць: ", font=courier_14, foreground='red')
 label_month.grid(row=2, column=0, ipadx=6, ipady=6, padx=5, pady=5)
-
 selected_report = tk.StringVar(value=report_options[0])
 report_menu = ttk.Combobox(lf12, textvariable=selected_report, values=report_options)
 report_menu.tag = "month"
