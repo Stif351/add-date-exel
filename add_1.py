@@ -35,39 +35,6 @@ def selected(event):
 
 def add_date():
 
-    '''
-    if text == '':
-        messagebox.showerror("Помилка вводу", "Оберите адресу !!!")
-    elif text == "КВІТНЕВА-8":
-        wb = load_workbook("K_8.xlsx")
-        ws = wb.active
-        data_gas_num = entries[0].get()
-        data_light_num = entries[1].get()
-        data_water_num = entries[2].get()
-
-        ws['C58'] = data_gas_num
-        ws['J58'] = data_light_num
-        ws['P58'] = data_water_num
-        wb.save("K_8.xlsx")
-
-
-    elif text == "КВІТНЕВА-30-5":
-        wb = load_workbook("k_30.xlsx")
-        ws = wb.active
-        data_gas_num = entries[0].get()
-        data_light_num = entries[1].get()
-        data_water_num = entries[2].get()
-
-        ws['C45'] = data_gas_num
-        ws['J45'] = data_light_num
-        ws['P45'] = data_water_num
-        wb.save("k_30.xlsx")
-
-
-    else:
-        print('error')
-        messagebox.showerror("Помилка вводу", "Оберите адресу !!!") '''
-
     match text:
         case '':
             messagebox.showerror("Помилка вводу", "Оберите адресу !!!")
