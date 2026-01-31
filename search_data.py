@@ -3,7 +3,8 @@ from tkinter import messagebox
 from openpyxl import load_workbook
 
 
-def find_in_excel_table(file_path, sheet_name, table_name, col_name, search_value):
+def find_in_excel_table(file_path: object, sheet_name: object, table_name: object, col_name: object, search_value: object) -> str:
+    print('>>>>>>>',search_value)
     wb = load_workbook(file_path)
     ws = wb[sheet_name]
 
@@ -33,7 +34,7 @@ def find_in_excel_table(file_path, sheet_name, table_name, col_name, search_valu
             ws[f'C{r}'] = 690656
             ws[f'J{r}'] = 808776
             ws[f'P{r}'] = 900
-            wb.save("k_30.xlsx")
+            wb.save(file_path)
             messagebox.showinfo("Інформація", "Данні додані до файлу")
             return f"Знайдено у рядку {row[col_idx].row}"
 
@@ -42,5 +43,5 @@ def find_in_excel_table(file_path, sheet_name, table_name, col_name, search_valu
 
 
 # Приклад використання
-result = find_in_excel_table('k_30.xlsx', 'A1', 'year2026', 'Дата', 'квітень') # добавити 3 параметра
-print(result)
+# result = find_in_excel_table('k_30.xlsx', 'A1', 'year2026', 'Дата', 'квітень') # добавити 3 параметра
+# print(result)
