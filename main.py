@@ -1,13 +1,12 @@
 import tkinter as tk
-
 import search_data
 
 
 from tkinter import *
-from tkinter import font, messagebox
+from tkinter import font, messagebox, filedialog
 from tkinter import ttk
 
-from openpyxl import load_workbook
+
 
 
 # ================== DATES ==============================================
@@ -32,8 +31,6 @@ def selected(event):
     tag = getattr(widget, "tag", None)
     text1 = widget.get()
 
-
-
     if tag == "month":
         text = text1
         label_report(lf_H1, 2, 0, text)
@@ -42,55 +39,29 @@ def selected(event):
         text2 = text1
         label_report(lf_H1, 2, 1, text2)
 
-
-
-
 def add_date():
 
-    match text2:
-        case '':
-            messagebox.showerror("Помилка вводу", "Оберите адресу !!!")
+    data_gas_num = entries[0].get()
+    data_light_num = entries[1].get()
+    data_water_num = entries[2].get()
 
-        case "КВІТНЕВА-8":                   # Замінити параметри
+    new_folder_path = filedialog.asksaveasfilename(
 
-            search_data.find_in_excel_table('K_8.xlsx', 'A1', f'{table_name}', 'Дата', f'{text}')
+        title="Виберіть файл для запису",
+        defaultextension=".xlsx",
+        filetypes=[("Exel файли", "*.xlsx"), ("Усі файли", "*.*")]
+    )
 
-            ''' wb = load_workbook("K_8.xlsx")
-                ws = wb.active
-                data_gas_num = entries[0].get()
-                data_light_num = entries[1].get()
-                data_water_num = entries[2].get()
-
-                ws['C21'] = data_gas_num
-                ws['J21'] = data_light_num
-                ws['P21'] = data_water_num
-                wb.save("K_8.xlsx")
-            '''
-
-
-
-        case "КВІТНЕВА-30-5":               # Замінити параметри
-
-            search_data.find_in_excel_table('k_30.xlsx', 'A1', f'{table_name}', 'Дата', f'{text}')
-
-            '''wb = load_workbook("k_30.xlsx")
-            ws = wb.active
-            data_gas_num = entries[0].get()
-            data_light_num = entries[1].get()
-            data_water_num = entries[2].get()
-
-            ws['C21'] = data_gas_num
-            ws['J21'] = data_light_num
-            ws['P21'] = data_water_num
-            wb.save("k_30.xlsx")
-            '''
-    messagebox.showinfo("Інформація", "Данні додані до файлу")
-
-
-
-
-
-
+    search_data.find_in_excel_table(
+        new_folder_path,
+        'A1',
+        table_name,
+        'Дата',
+        text,
+        data_gas_num,
+        data_light_num,
+        data_water_num
+    )
 
 def label_report(frame, row, column, value):
 
@@ -109,6 +80,11 @@ def validate_input(new_value):
         return False
     return True
 
+def confirm_exit():
+
+    response = messagebox.askyesno("Вихід", "Ви впевнені, що хочете вийти?")
+    if response:
+        root.quit()
 
 # =/////////////////===================  MAIN ==========================////////////////////////////////
 
@@ -159,7 +135,7 @@ address_t.bind("<<ComboboxSelected>>", selected)
 # ***************************** frame date count 8  **********************************
 
 lf_H8 = ttk.Frame(lf_MF, borderwidth=10, relief=SUNKEN)
-lf_H8.config(width=width_frame, height=300)
+lf_H8.config(width=width_frame, height=350)
 lf_H8.grid_propagate(False)
 
 vcmd = (lf_H8.register(validate_input), "%P")
@@ -181,6 +157,8 @@ for i, d in enumerate(energy):  # створюємо 3 поля
 save_btn = tk.Button(lf_H8, text="ЗБЕРЕГТИ ПОКАЗНИКИ", font=courier_10, state='normal', command=add_date)
 save_btn.grid(row=3, column=0, ipadx=6, ipady=6, padx=50, pady=30)
 
+exit_btn = tk.Button(lf_H8, text="ЗАВЕРШИТИ", font=courier_10, foreground='red', command=confirm_exit)
+exit_btn.grid(row=4, column=0, ipadx=6, ipady=6, padx=50, pady=1)
 
 lf_H1.grid(column=0, row=2, padx=20, pady=10, sticky=W)
 lf_H8.grid(column=0, row=5, padx=20, pady=10, sticky=W)
