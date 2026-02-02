@@ -49,7 +49,8 @@ def add_date():
 
         title="Виберіть файл для запису",
         defaultextension=".xlsx",
-        filetypes=[("Exel файли", "*.xlsx"), ("Усі файли", "*.*")]
+        filetypes=[("Exel файли", "*.xlsx"), ("Усі файли", "*.*")],
+	confirmoverwrite=False
     )
 
     search_data.find_in_excel_table(
