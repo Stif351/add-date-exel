@@ -63,6 +63,23 @@ def add_date():
         data_light_num,
         data_water_num
     )
+    clear_fields()
+
+def clear_fields():
+
+    for field in entries:
+
+        field.delete(0, END)
+
+
+
+    selected_report.set('')
+    selected_a.set('')
+
+
+    messagebox.showinfo("Успіх", "Дані успішно збережено!")
+
+
 
 def label_report(frame, row, column, value):
 
@@ -85,6 +102,7 @@ def confirm_exit():
 
     response = messagebox.askyesno("Вихід", "Ви впевнені, що хочете вийти?")
     if response:
+
         root.quit()
 
 # =/////////////////===================  MAIN ==========================////////////////////////////////
@@ -152,6 +170,7 @@ for i, d in enumerate(energy):  # створюємо 3 поля
     entry.grid(row=i, column=1, ipadx=6, ipady=6)
 
     entries.append(entry)
+
 
 # ************************************ КНОПКА ДОБАВИТИ  ***********************************************************
 

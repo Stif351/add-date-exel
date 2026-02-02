@@ -37,6 +37,7 @@ def find_in_excel_table(file_path: object, sheet_name: object, table_name: objec
             ws[f'P{r}'] = data_water_num
             wb.save(file_path)
             messagebox.showinfo("Інформація", "Данні додані до файлу")
+
             return f"Знайдено у рядку {row[col_idx].row}"
 
     return messagebox.showinfo("Не вірно значення", "Значення не знайдено. Введіть вірно місяць.")
