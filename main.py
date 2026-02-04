@@ -63,6 +63,7 @@ def add_date():
         data_light_num,
         data_water_num
     )
+
     clear_fields()
 
 def clear_fields():
@@ -71,11 +72,8 @@ def clear_fields():
 
         field.delete(0, END)
 
-
-
     selected_report.set('')
     selected_a.set('')
-
 
     messagebox.showinfo("Успіх", "Дані успішно збережено!")
 

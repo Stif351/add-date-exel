@@ -11,7 +11,7 @@ def find_in_excel_table(file_path: object, sheet_name: object, table_name: objec
 
     # Знаходимо таблицю за ім'ям
     if table_name not in ws.tables:
-        return "Таблицю не знайдено"
+        return messagebox.showinfo("Не вірне значення", "Таблицю не знайдено")
 
     table = ws.tables[table_name]
     table_range = ws[table.ref]  # Отримуємо діапазон клітинок (напр., A1:C10)
@@ -25,7 +25,7 @@ def find_in_excel_table(file_path: object, sheet_name: object, table_name: objec
             break
 
     if col_idx is None:
-        return messagebox.showinfo("Не вірно значення", "Колонку не знайдено. Введіть вірно назву колонки.")
+        return messagebox.showinfo("Не вірне значення", "Колонку не знайдено. Введіть вірно назву колонки.")
 
     # Пошук значення в обраній колонці (пропускаючи заголовок)
     for row in table_range[1:]:
